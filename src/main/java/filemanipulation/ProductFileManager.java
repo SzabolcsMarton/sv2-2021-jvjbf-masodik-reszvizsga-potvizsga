@@ -29,7 +29,7 @@ public class ProductFileManager {
     private List<String> getLinesOverPrice(int price) {
         return products
                 .stream()
-                .filter(product -> Integer.parseInt(product.getPrice()) > price)
+                .filter(product -> product.getPrice() > price)
                 .map(Product::toString)
                 .toList();
     }
@@ -37,7 +37,7 @@ public class ProductFileManager {
     private void addToProductsList(List<String> lines) {
         lines.forEach(s -> {
             String[] parts = s.split(";");
-            products.add(new Product(parts[0], parts[1], parts[2]));
+            products.add(new Product(parts[0], parts[1], Integer.parseInt(parts[2])));
         });
     }
 
